@@ -1,3 +1,23 @@
+neighborhoods = {
+  financialDistrict, 
+  tribeca, 
+  chinatown, 
+  soho, 
+  lowerEastSide, 
+  greenwichVillage, 
+  eastVillage, 
+  chelsea, 
+  gramercy, 
+  murrayHill, 
+  midtownEast, 
+  midtownWest, 
+  upperWestSide, 
+  upperEastSide, 
+  eastHarlem, 
+  harlem, 
+  morningsideHeights
+}
+
 top three female dog names in Manhattan: Lucy, Lola, Bella
 top three male dog names in Manhattan: Max, Charlie, Oliver
 
@@ -72,6 +92,45 @@ midtownWest = 4
 midtownEast = 4
 murrayHill = 3
 financialDistrict = 3
+======================================
+Farmers Markets:
+harlem = 10
+upperEastSide = 10
+upperWestSide = 7
+financialDistrict = 7
+eastVillage = 7
+morningsideHeights = 7
+inwood = 7
+midtownWest = 7
+greenwichVillage = 5
+eastHarlem = 5
+gramercy = 2
+chelsea = 2
+murrayHill = 2
+lowerEastSide = 2
+tribeca = 2
+midtownEast = 2
+=====================================
+Park Toilets:
+harlem = 10;
+upperWestSide = 10;
+upperEastSide = 8;
+inwood = 7;
+eastHarlem = 7;
+eastVillage = 5;
+greenwichVillage = 5;
+lowerEastSide = 5;
+midtownWest = 4;
+financialDistrict = 3
+gramercy = 3;
+midtownEast = 2;
+chelsea = 2;
+chinatown = 2;
+murrayHill = 1;
+soho = 1;
+=====================================
+
+
 
 
 

@@ -1,16 +1,14 @@
-DROP TABLE IF EXISTS toilet;
+DROP TABLE IF EXISTS toilets;
 
 CREATE TABLE toilets (
     id SERIAL PRIMARY KEY,
     Name VARCHAR,
     Location VARCHAR,
-    Open_Year_Round VARCHAR,
-    Handicap_Accessible VARCHAR,
-    Borough VARCHAR,
-    Comments VARCHAR
+    Neighborhood VARCHAR,
+    Borough VARCHAR
 );
 
 COPY toilets
-    (Name,Location,Open_Year_Round,Handicap_Accessible,Borough,Comments)
-FROM '/Users/Allison/Dropbox (Personal)/General Assembly/hood_matcher/data_sets/Directory_Of_Toilets_In_Public_Parks.csv'
+    (Name,Location,Neighborhood,Borough)
+FROM '/Users/Allison/Dropbox (Personal)/General Assembly/hood_matcher/data_sets/toilet_seeds.csv'
     DELIMITER ',' CSV;
