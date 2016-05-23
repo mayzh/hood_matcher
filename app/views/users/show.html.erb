@@ -1,7 +1,11 @@
-<%= @user.username %> <%= @user.email %>
-<br />
+<h4>User Profile</h4>
 
-<%= link_to 'back', users_path %>
-<br/>
+Username: <%= @user['username'] %><br>
+Email address: <%= @user['email'] %><br>
+placeholder for assigned neighborhood <br>
 
-<%= link_to 'delete', @user, method: :delete %>
+
+<h4><%= link_to 'Remove User', @user, method: :delete %></h4>
+
+
+
