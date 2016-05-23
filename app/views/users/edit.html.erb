@@ -1,0 +1,13 @@
+<%= form_for @user, url: {action: 'update'} do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username, value: @user.username %>
+  <br /><br />
+
+  <%= f.label :email %>
+  <%= f.text_field :email, value: @user.email %>
+  <br /><br />
+
+  <%= f.submit %>
+<% end %>
+
+<%= link_to 'cancel', @user %>

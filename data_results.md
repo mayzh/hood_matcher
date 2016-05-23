@@ -423,6 +423,28 @@ Max
  Morningside Heights | 1
  Harlem              | 0
  Inwood              | 0
+===================================================
+neighborhood         | number of delivery restaurants to middle point
+---------------------+----
+ Greenwich Village   | 409
+ Midtown East        | 465
+ Chelsea             | 411
+ Midtown West        | 490
+ East Village        | 425
+ Upper East Side     | 291
+ Gramercy            | 467
+ Murray Hill         | 385
+ Upper West Side     | 165
+ Lower East Side     | 248
+ Soho                | 363
+ Tribeca             | 259
+ Financial District  | 293
+ East Harlem         | 99
+ Chinatown           | 
+ Morningside Heights | 
+ Harlem              | 
+ Inwood              | 
+
 
 
 

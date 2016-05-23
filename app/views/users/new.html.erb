@@ -1,19 +1,11 @@
-  <%= form_for @user, url: {action: 'create'} do |f| %>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-    <br /><br />
+<h1>Sign up</h1>
 
+<%= form_for :user, url: '/users' do |f| %>
 
-    <%= f.label :username %>
-    <%= f.text_field :username %>
-    <br /><br />
+  Username: <%= f.text_field :username %><br>
+  Email: <%= f.text_field :email %><br>
+  Password: <%= f.password_field :password %><br>
+  Password Confirmation: <%= f.password_field :password_confirmation %><br>
+  <%= f.submit "Submit" %>
 
-    <%= f.label :password %>
-    <%= f.text_field :password_digest %>
-    <br /><br />
-
-    <%= f.submit %>
-  <% end %>
-<br> <%= link_to 'cancel', users_path %>
-
-
+<% end %>

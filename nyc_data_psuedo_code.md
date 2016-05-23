@@ -315,6 +315,96 @@ morningsideHeights = 1;
 harlem = 0;
 inwood = 0;
 ============================================
+"Who is your NYC spirit animal?"
+spiritAnimals = {
+    'Barack Obama',
+    'Joan Rivers',
+    'Howard Stern',
+    'Winkelvoss Twins',
+    'Lady Gaga',
+    'Rosario Dawson'
+}
+if pick 'Barack Obama' then 
+    morningsideHeights = 10;
+else if pick 'Joan Rivers' then 
+    upperEastSide = 10;
+else if pick 'Howard Stern' then 
+    upperWestSide = 10;
+else if pick 'Winkelvoss Twins' then  
+    greenwichVillage = 10;
+else if pick 'Lady Gaga' then 
+    lowerEastSide = 10;
+else if pick 'Rosario Dawson' then 
+    eastVillage = 10;
+============================================
+"What is your favorite song to play on the jukebox?"
+jukeboxSongs = {
+    'Eres Mia',
+    'Drunk in Love', 
+    'I Dreamed a Dream',
+    'Man! I Feel Like a Woman',
+    'Sweet Child O Mine',
+    'Dark Horse',
+    'Wagon Wheel',
+    "It's Not Unusual",
+    'Sexual Healing'
+    "Don't Stop Believin'"
+}
+if pick 'Eres Mia' then 
+    eastHarlem = 10;
+else if pick 'Drunk in Love' then 
+    upperEastSide = 10;
+    upperWestSide = 10;
+    chelsea = 10;
+    midtownEast = 10;
+    tribeca = 10;
+else if pick 'I Dreamed a Dream' then 
+    upperWestSide = 5;
+else if pick 'Man! I Feel Like a Woman' then 
+    midtownWest = 10;
+else if pick 'Sweet Child O Mine' then 
+    murrayHill = 10;
+else if pick 'Dark Horse' then 
+    gramercy = 10;
+else if pick 'Wagon Wheel' then 
+    lowerEastSide = 10;
+else if pick "It's Not Unusual" then 
+    chinatown = 10;
+else if pick 'Sexual Healing' then 
+    morningsideHeights = 10;
+else if pick "Don't Stop Believin" then 
+    financialDistrict = 10;
+=====================================================
+"What's your favorite alcoholic beverage?"
+drinks = {
+    'domestic beer on draft' = upperWestSide,
+    'martini' = upperEastSide,
+    'vodka soda' = eastVillage,
+    'pbr' = lowerEastSide,
+    'cosmo' = tribeca,
+    'a bottle of imported beer' = financialDistrict,
+    'fireball' = murrayHill,
+    'michelada' = eastHarlem,
+    'old fashioned' = gramercy,
+    'jack and coke' = morningsideHeights,
+    'long island iced tea' = midtownWest,
+}
+===================================================
+"How many cups of coffee do you need to get going in the morning?"
+cupsOfJoe = {
+    0, 1, 5
+}
+
+if pick 0 then 
+    inwood, eastHarlem = 10;
+    harlem = 8;
+
+if pick 5 then 
+    midtownWest, midtownEast, chelsea, eastVillage, greenwichVillage = 10;
+    murrayHill, lowerEastSide, financialDistrict = 7;
+if pick 1 then 
+    morningsideHeights, upperWestSide, upperEastSide = 10;  
+
 
 
 
