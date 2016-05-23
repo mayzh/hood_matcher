@@ -23,25 +23,6 @@ $.ajax({
   } //end of success function
 }) //end of ajax call
 
-// adding map without using AJAX
-// function initMap() {
-//   map = new google.maps.Map(document.getElementById('map'), {
-//     zoom: 12,
-//     center: {lat: 40.756929, lng: -73.978885}, //New York
-//     // Disables the default Google Maps UI components
-//     disableDefaultUI: true,
-//     scrollwheel: false,
-//     draggable: false
-//   });
-//   // create the geocoder
-//   geocoder = new google.maps.Geocoder();
-
-//   // document.getElementById('submit').addEventListener('click', function() {
-//   //   geocodeAddress(geocoder, map);
-//   // })
-//   // fetch the existing places (ajax) and put them on the map
-//   fetchPlaces();
-// } // end of initMap
 
 
 
@@ -201,3 +182,24 @@ function geocodeAddress(geocoder, resultsMap) {
     //     icon: image
     // }); // end beachMarker
 //}; // end of funciton init
+
+
+// adding map without using AJAX
+// function initMap() {
+//   map = new google.maps.Map(document.getElementById('map'), {
+//     zoom: 12,
+//     center: {lat: 40.756929, lng: -73.978885}, //New York
+//     // Disables the default Google Maps UI components
+//     disableDefaultUI: true,
+//     scrollwheel: false,
+//     draggable: false
+//   });
+//   // create the geocoder
+//   geocoder = new google.maps.Geocoder();
+
+//   // document.getElementById('submit').addEventListener('click', function() {
+//   //   geocodeAddress(geocoder, map);
+//   // })
+//   // fetch the existing places (ajax) and put them on the map
+//   fetchPlaces();
+// } // end of initMap
