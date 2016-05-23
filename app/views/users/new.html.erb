@@ -1,0 +1,19 @@
+  <%= form_for @user, url: {action: 'create'} do |f| %>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+    <br /><br />
+
+
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+    <br /><br />
+
+    <%= f.label :password %>
+    <%= f.text_field :password_digest %>
+    <br /><br />
+
+    <%= f.submit %>
+  <% end %>
+<br> <%= link_to 'cancel', users_path %>
+
+
