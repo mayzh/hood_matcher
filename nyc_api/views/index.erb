@@ -1,0 +1,12 @@
+<% @bars.each do |bar| %>
+
+  <strong><%= bar['premises_name'] %></strong> <br />
+  NY County: <%= bar['county_name_licensee'] %><br>
+  Zip code: <%= bar['zip'] %><br />
+  License Type: <%= bar['license_type_name'] %>
+  <hr>
+<% end %>
+
+
+
+
