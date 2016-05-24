@@ -20,6 +20,34 @@ var eastHarlem = '164 E 116th St, New York, NY 10029';
 var harlem = '2361 Adam Clayton Powell Jr Blvd, New York, NY 10030';
 var morningSideHts = '420 W 118th St, New York, NY 10027';
 
+//function to add heatmap results based on answers to questions
+var heatmapAJAX = function(result, multiplier) {
+  $.ajax({
+    method: "GET",
+    url:'https://maps.googleapis.com/maps/api/geocode/json?address=' + result + '&key=AIzaSyAI0zafi0IKwLK3q6WxE9a5bSnu-UwcaeE',
+    success: function(data){
+      var lati = data['results'][0]['geometry']['location']['lat']; //gets Longitude
+      var lng = data['results'][0]['geometry']['location']['lng']; // gets Latitude
+      var getPoints = function() {
+        //do loop adds the heatmap dot over and over to same place up to the value of the multipler assigned above
+        var count = 0;
+        do {
+          count++;
+          return [
+            new google.maps.LatLng(lati, lng)
+          ]
+        } while (count <= multiplier);
+      } //end of getPoints function
+      heatmap = new google.maps.visualization.HeatmapLayer({
+          data: getPoints(),
+          map: map
+        });
+      $('#map').append(map);
+    } //end of success function
+  }) //end of ajax call
+}
+
+//function to add initial map to the page
 $.ajax({
   method: "GET",
   dataType: 'script',
@@ -39,7 +67,8 @@ $.ajax({
   } //end of success function
 }) //end of ajax call
 
-$('#q1').click(function(e) {
+//**********QUESTION 1***********
+$("input[name*='q1']").click(function(e) {
   // e.preventDefault; // dont think we need this
   var result;
   //switch case to assign a neighborhood and multiper to be added to heatmap depending on which answer is selected. So, look at nyc_data_psuedo_code and pick one neighborhood and corresponding multiplier for each answer (see the questions in questions.html). Let's not do a bunch of neighborhoods for each answer at this time. just one hood per answer.
@@ -69,32 +98,273 @@ $('#q1').click(function(e) {
       multiplier = 7;
       break;
   }
+  heatmapAJAX(result, multiplier);
+})//end of click function q1 **************************
+
+//**********QUESTION 2***********
+$("input[name*='q2']").click(function(e) {
+  // e.preventDefault; // dont think we need this
+  var result;
+  switch($('input[name=q2]:checked').attr('id')){
+    case 'q2a':
+      result = harlem;
+      multiplier = 10;
+      break;
+    case 'q2b':
+      result = chinaTown;
+      multiplier = 10;
+      break;
+  }
+  // console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
+  heatmapAJAX(result, multiplier);
+})//end of click function q2 **************************
+
+//**********QUESTION 3***********
+$("input[name*='q3']").click(function(e) {
+  // e.preventDefault; // dont think we need this
+  var result;
+  switch($('input[name=q3]:checked').attr('id')){
+    case 'q3a':
+      result = upperWestSide;
+      multiplier = 10;
+      break;
+    case 'q3b':
+      result = tribeca;
+      multiplier = 10;
+      break;
+  }
+  // console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
+  heatmapAJAX(result, multiplier);
+})//end of click function q3 **************************
+
+//**********QUESTION 4***********
+$("input[name*='q4']").click(function(e) {
+  // e.preventDefault; // dont think we need this
+  var result;
+  switch($('input[name=q4]:checked').attr('id')){
+    case 'q4a':
+      result = upperWestSide;
+      multiplier = 10;
+      break;
+    case 'q4b':
+      result = tribeca;
+      multiplier = 10;
+      break;
+  }
   // console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
 
-  //ADD IN THE API KEY LOCALLY - NOT IN GITHUB VERSION //
-  $.ajax({
-    method: "GET",
-    url:'https://maps.googleapis.com/maps/api/geocode/json?address=' + result + '&key=YOUR_API_KEY',
-    success: function(data){
-      var lati = data['results'][0]['geometry']['location']['lat']; //gets Longitude
-      var lng = data['results'][0]['geometry']['location']['lng']; // gets Latitude
-      var getPoints = function() {
-        //do loop adds the heatmap dot over and over to same place up to the value of the multipler assigned above
-        var count = 0;
-        do {
-          count++;
-          return [
-            new google.maps.LatLng(lati, lng)
-          ]
-        } while (count <= multiplier);
-      } //end of getPoints function
-      heatmap = new google.maps.visualization.HeatmapLayer({
-          data: getPoints(),
-          map: map
-        });
-      $('#map').append(map);
-    } //end of success function
-  }) //end of ajax call
-})//end of click function q1
+  heatmapAJAX(result, multiplier);
+})//end of click function q4 **************************
 
+// NUMBER 5 WHAT IS YOUR FAV CUISINE?????
+$("input[name*='q5']").click(function(e){
+  var result;
+//switch case to assign a neighborhood and multiper to be added to heatmap depending on which answer is selected.
+  switch($('input[name=q5]:checked').attr('id')){
+    case 'q5a':
+      result = upperEastSide;
+      multiplier = 10;
+      break;
+    case 'q5b':
+      result = chinaTown;
+      multiplier = 10;
+      break;
+    case 'q5c':
+      result = midtownWest;
+      multiplier = 10;
+      break;
+    case 'q5d':
+      result = greenwich;
+      multiplier = 10;
+      break;
+  }
+  console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
+  heatmapAJAX(result, multiplier);
+})//end of click function q5 **************************
+
+// NUMBER 6 WHO'S YOUR FAVORITE SPIRIT ANIMAL?
+$("input[name*='q6']").click(function(e) {
+  var result;
+  switch($('input[name=q6]:checked').attr('id')){
+    case 'q6a':
+      result = morningSideHts;
+      multiplier = 10;
+      break;
+    case 'q6b':
+      result = upperEastSide;
+      multiplier = 10;
+      break;
+    case 'q6c':
+      result = upperWestSide;
+      multiplier = 10;
+      break;
+    case 'q6d':
+      result = greenwich;
+      multiplier = 10;
+      break;
+    case 'q6e':
+      result = lowerEast;
+      multiplier = 10;
+      break;
+    case 'q6f':
+      result = eastVillage;
+      multiplier = 10;
+      break;
+  }
+  console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
+  heatmapAJAX(result, multiplier);
+})//end of click function q6 **************************
+
+// NUMBER 7 FAVORITE SONG ON JUKEBOX?
+$("input[name*='q7']").click(function(e){
+  var result;
+  switch($('input[name=q7]:checked').attr('id')){
+    case 'q7a':
+      result = eastHarlem
+      multiplier = 10;
+      break;
+    case 'q7b':
+      result = upperEastSide;
+      multiplier = 10;
+      break;
+    case 'q7c':
+      result = upperWestSide;
+      multiplier = 5;
+      break;
+    case 'q7d':
+      result = midtownWest;
+      multiplier = 10;
+      break;
+    case 'q7e':
+      result = murrayHill;
+      multiplier = 10;
+      break;
+    case 'q7f':
+      result = gramercy;
+      multiplier = 10;
+      break;
+    case 'q7g':
+      result = lowerEast;
+      multiplier = 10;
+      break;
+    case 'q7h':
+      result = chinaTown;
+      multiplier = 10;
+      break;
+    case 'q7i':
+      result = morningSideHts;
+      multiplier = 10;
+      break;
+    case 'q7j':
+      result = financialDist;
+      multiplier = 10;
+      break;
+  }
+  console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
+  heatmapAJAX(result, multiplier);
+})//end of click function q7 **************************
+
+// **************** QUESTION 8
+$("input[name*='q8']").click(function(e) {
+  var result;
+
+  switch($('input[name=q8]:checked').attr('id')){
+    case 'q8a':
+      result = upperWestSide;
+      multiplier = 10;
+      break;
+    case 'q8b':
+      result = upperEastSide;
+      multiplier = 10;
+      break;
+    case 'q8c':
+      result = eastVillage;
+      multiplier = 10;
+      break;
+    case 'q8d':
+      result = lowerEast;
+      multiplier = 10;
+      break;
+    case 'q8e':
+      result = tribeca;
+      multiplier = 10;
+      break;
+    case 'q8f':
+      result = financialDist;
+      multiplier = 10;
+      break;
+    case 'q8g':
+      result = murrayHill;
+      multiplier = 10;
+      break;
+    case 'q8h':
+      result = eastHarlem;
+      multiplier = 10;
+      break;
+    case 'q8i':
+      result = gramercy;
+      multiplier = 10;
+      break;
+    case 'q8j':
+      result = morningSideHts;
+      multiplier = 10;
+      break;
+    case 'q8k':
+      result = midtownWest;
+      multiplier = 10;
+      break;
+  }
+  // console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
+
+   heatmapAJAX(result, multiplier);
+})//end of click function q8 *********************
+
+//********************* QUESTION 9
+$("input[name*='q9']").click(function(e) {
+
+  var result;
+
+  switch($('input[name=q9]:checked').attr('id')){
+    case 'q9a':
+      result = inwood;
+      multiplier = 10;
+      break;
+    case 'q9b':
+      result = morningSideHts;
+      multiplier = 10;
+      break;
+    case 'q9c':
+      result = midtownEast;
+      multiplier = 10;
+      break;
+
+  }
+  console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
+  heatmapAJAX(result, multiplier);
+})//end of click function q9************************
+
+//********************* QUESTION 10
+$("input[name='q10']").click(function(e) {
+
+  var result;
+
+  switch($('input[name=q10]:checked').attr('id')){
+    case 'q10a':
+      result = eastHarlem;
+      multiplier = 10;
+      break;
+    case 'q10b':
+      result = murrayHill;
+      multiplier = 5;
+      break;
+    case 'q10c':
+      result = midtownWest;
+      multiplier = 10;
+      break;
+
+  }
+  // console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
+
+  heatmapAJAX(result, multiplier);
+})//end of click function q9************************
 
