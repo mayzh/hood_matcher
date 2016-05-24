@@ -69,7 +69,7 @@ $('#q1').click(function(e) {
       multiplier = 7;
       break;
   }
-  // console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
+  console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
 
   //ADD IN THE API KEY LOCALLY - NOT IN GITHUB VERSION //
   $.ajax({
@@ -96,5 +96,179 @@ $('#q1').click(function(e) {
     } //end of success function
   }) //end of ajax call
 })//end of click function q1
+
+$('#q8').click(function(e) {
+
+  var result;
+
+  switch($('input[name=q8]:checked').attr('id')){
+    case 'q8a':
+      result = upperWestSide;
+      multiplier = 10;
+      break;
+    case 'q8b':
+      result = upperEastSide;
+      multiplier = 10;
+      break;
+    case 'q8c':
+      result = eastVillage;
+      multiplier = 10;
+      break;
+    case 'q8d':
+      result = lowerEast;
+      multiplier = 10;
+      break;
+    case 'q8e':
+      result = tribeca;
+      multiplier = 10;
+      break;
+    case 'q8f':
+      result = financialDist;
+      multiplier = 10;
+      break;
+    case 'q8g':
+      result = murrayHill;
+      multiplier = 10;
+      break;
+    case 'q8h':
+      result = eastHarlem;
+      multiplier = 10;
+      break;
+    case 'q8i':
+      result = gramercy;
+      multiplier = 10;
+      break;
+    case 'q8j':
+      result = morningSideHts;
+      multiplier = 10;
+      break;
+    case 'q8k':
+      result = midtownWest;
+      multiplier = 10;
+      break;
+  }
+  console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
+
+  //ADD IN THE API KEY LOCALLY - NOT IN GITHUB VERSION //
+  $.ajax({
+    method: "GET",
+    url:'https://maps.googleapis.com/maps/api/geocode/json?address=' + result + '&key=AIzaSyAI0zafi0IKwLK3q6WxE9a5bSnu-UwcaeE',
+    success: function(data){
+      var lati = data['results'][0]['geometry']['location']['lat']; //gets Longitude
+      var lng = data['results'][0]['geometry']['location']['lng']; // gets Latitude
+      var getPoints = function() {
+        //do loop adds the heatmap dot over and over to same place up to the value of the multipler assigned above
+        var count = 0;
+        do {
+          count++;
+          return [
+            new google.maps.LatLng(lati, lng)
+          ]
+        } while (count <= multiplier);
+      } //end of getPoints function
+      heatmap = new google.maps.visualization.HeatmapLayer({
+          data: getPoints(),
+          map: map
+        });
+      $('#map').append(map);
+    } //end of success function
+  }) //end of ajax call
+})//end of click function q8
+
+$('#q9').click(function(e) {
+
+  var result;
+
+  switch($('input[name=q9]:checked').attr('id')){
+    case 'q9a':
+      result = inwood;
+      multiplier = 10;
+      break;
+    case 'q9b':
+      result = morningSideHts;
+      multiplier = 10;
+      break;
+    case 'q9c':
+      result = midtownEast;
+      multiplier = 10;
+      break;
+
+  }
+  console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
+
+  //ADD IN THE API KEY LOCALLY - NOT IN GITHUB VERSION //
+  $.ajax({
+    method: "GET",
+    url:'https://maps.googleapis.com/maps/api/geocode/json?address=' + result + '&key=AIzaSyAI0zafi0IKwLK3q6WxE9a5bSnu-UwcaeE',
+    success: function(data){
+      var lati = data['results'][0]['geometry']['location']['lat']; //gets Longitude
+      var lng = data['results'][0]['geometry']['location']['lng']; // gets Latitude
+      var getPoints = function() {
+        //do loop adds the heatmap dot over and over to same place up to the value of the multipler assigned above
+        var count = 0;
+        do {
+          count++;
+          return [
+            new google.maps.LatLng(lati, lng)
+          ]
+        } while (count <= multiplier);
+      } //end of getPoints function
+      heatmap = new google.maps.visualization.HeatmapLayer({
+          data: getPoints(),
+          map: map
+        });
+      $('#map').append(map);
+    } //end of success function
+  }) //end of ajax call
+})//end of click function q9
+
+
+$('#q10').click(function(e) {
+
+  var result;
+
+  switch($('input[name=q10]:checked').attr('id')){
+    case 'q10a':
+      result = inwood;
+      multiplier = 10;
+      break;
+    case 'q10b':
+      result = morningSideHts;
+      multiplier = 10;
+      break;
+    case 'q10c':
+      result = midtownWest;
+      multiplier = 10;
+      break;
+
+  }
+  console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
+
+  //ADD IN THE API KEY LOCALLY - NOT IN GITHUB VERSION //
+  $.ajax({
+    method: "GET",
+    url:'https://maps.googleapis.com/maps/api/geocode/json?address=' + result + '&key=AIzaSyAI0zafi0IKwLK3q6WxE9a5bSnu-UwcaeE',
+    success: function(data){
+      var lati = data['results'][0]['geometry']['location']['lat']; //gets Longitude
+      var lng = data['results'][0]['geometry']['location']['lng']; // gets Latitude
+      var getPoints = function() {
+        //do loop adds the heatmap dot over and over to same place up to the value of the multipler assigned above
+        var count = 0;
+        do {
+          count++;
+          return [
+            new google.maps.LatLng(lati, lng)
+          ]
+        } while (count <= multiplier);
+      } //end of getPoints function
+      heatmap = new google.maps.visualization.HeatmapLayer({
+          data: getPoints(),
+          map: map
+        });
+      $('#map').append(map);
+    } //end of success function
+  }) //end of ajax call
+})//end of click function q10
+
 
 
