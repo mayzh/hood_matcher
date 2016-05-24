@@ -1,0 +1,18 @@
+<% # in _form.html.erb %>
+<%= form_for [:surveys, @attempt] do |f| %>
+  <%= f.fields_for :answers do |builder| %>
+    <ul>
+      <% @survey.questions.each do |question| %>
+        <li>
+          <p><%= question.text %></p>
+          <%= builder.hidden_field :question_id, :value => question.id %>
+          <% question.options.each do |option| %>
+            <%= builder.check_box :option_id, {}, option.id, nil %>
+            <%= option.text %> <br/ >
+          <% end -%>
+        </li>
+      <% end -%>
+    </ul>
+  <% end -%>
+  <%= f.submit "Submit" %>
+<% end -%>
