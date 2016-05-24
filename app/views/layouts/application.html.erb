@@ -1,14 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>HoodV2</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Hood Matcher</title>
+    <%= stylesheet_link_tag  'bootstrap.min', media: 'all', 'data-turbolinks-track' => true%>
+    <%= stylesheet_link_tag  'stylesheet', media: 'all', 'data-turbolinks-track' => true%>
+
+
+    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
 </head>
 <body>
 
 <%= yield %>
 
+  <footer>
+        <div class="container text-center">
+            <h4 style="font-size: 10pt; margin:0"> WDI Shortstack. 2016. </h4>
+        </div>
+    </footer>
+
+
+
+    <!-- jQuery -->
+    <%= javascript_include_tag 'jquery', 'data-turbolinks-track' => true %>
+
+    <!-- Bootstrap Core JavaScript -->
+    <%= javascript_include_tag 'bootstrap.min', 'data-turbolinks-track' => true %>
+
+    <!-- Plugin JavaScript-->
+    <%= javascript_include_tag 'jquery.easing.min', 'data-turbolinks-track' => true %>
+
+    <!-- Custom Theme JavaScript -->
+    <%= javascript_include_tag 'main', 'data-turbolinks-track' => true %>
+
+    <!-- Google Maps API Key  -->
+    <%= javascript_include_tag 'googleAPI', 'data-turbolinks-track' => true %>
+    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=visualization">
+    </script> -->
+
+
 </body>
+
 </html>
