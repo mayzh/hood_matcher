@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-
+  has_surveys
   has_secure_password
 
   attr_accessor :username, :email, :password, :password_confirmation
