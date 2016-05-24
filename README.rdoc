@@ -1,28 +1,22 @@
-== README
+#Welcome To Hood Matcher!
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##
+Series of questions that when answered, places a heat marker in a NYC neighborhood that corresponds to your answer.
 
-Things you may want to cover:
+##
+You will be asked questions that tell us about your personiality, and you will be matched with a neighborhood with cutting edge technology.
+This app was built with RESTful Ruby, Javascript/jQuery, NYC data, Google Maps api, and a serious consideration of daily New Yorker's lives.
 
-* Ruby version
+Answer each questions carefully and see the magic in action!
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+###
+By : Alli Cummings, May Zhang, Alvin Kim, & Christian Kretschmer
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+
+
+
+
+
+
+
