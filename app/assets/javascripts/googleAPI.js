@@ -69,7 +69,7 @@ $('#q1').click(function(e) {
       multiplier = 7;
       break;
   }
-  // console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
+  console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
 
   //ADD IN THE API KEY LOCALLY - NOT IN GITHUB VERSION //
   $.ajax({
