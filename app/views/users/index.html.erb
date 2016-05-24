@@ -1,54 +1,5 @@
-<%
-=begin %>   <% @users.each do |user| %>
-<h5><%= link_to user.username, user %></h5>
-<% end %>
-  <h3><%= link_to 'Sign Up Now!', new_user_path %></h3>
-<h3> OR </h3>
-<h3><%= link_to 'Login', new_user_path %></h3>
 
-<hr>
-
-<% if current_user %>
-  Signed in as <%= current_user.username %> | <%= link_to "Logout", '/logout' %>
-<% else %>
-  <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
-<% end %>
-<%
-=end %>
-
- <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-                    <i class="fa fa-bars"></i>
-                </button>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-                <ul class="nav navbar-nav">
-                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#">Sign Up</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#">Login</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#">Friends</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-
-    <!-- Intro Header -->
-    <header class="intro">
+    <div class="intro">
         <div class="intro-body">
             <div class="container">
                 <div class="row">
@@ -56,9 +7,11 @@
                         <h1 class="intro-heading">Hood Matcher</h1>
                         <p class="intro-text">Find your dream NYC neighborhood</p>
                         <br>
-                         <a href="#" class="btn btn-default btn-lg">BEGIN QUIZ</a>
+                         <a href="#" class="btn btn-default btn-lg">BEGIN</a>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
+
+
+    </div>
