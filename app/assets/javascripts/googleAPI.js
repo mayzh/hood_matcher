@@ -39,6 +39,7 @@ $.ajax({
   } //end of success function
 }) //end of ajax call
 
+
 $('#q1').click(function(e) {
   // e.preventDefault; // dont think we need this
   var result;
@@ -96,5 +97,196 @@ $('#q1').click(function(e) {
     } //end of success function
   }) //end of ajax call
 })//end of click function q1
+
+
+// NUMBER 5 WHAT IS YOUR FAV CUISINE?????
+
+
+$('#q5').click(function(e){
+  var result;
+//switch case to assign a neighborhood and multiper to be added to heatmap depending on which answer is selected.
+  switch($('input[name=q5]:checked').attr('id')){
+    case 'q5a':
+      result = upperEastSide;
+      multiplier = 10;
+      break;
+    case 'q5b':
+      result = chinatown;
+      multiplier = 10;
+      break;
+    case 'q5c':
+      result = midtownWest;
+      multiplier = 10;
+      break;
+    case 'q5d':
+      result = greenwichVillage;
+      multiplier = 10;
+      break;
+  }
+  console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
+ $.ajax({
+    method: "GET",
+    url:'https://maps.googleapis.com/maps/api/geocode/json?address=' + result + '&key=AIzaSyAI0zafi0IKwLK3q6WxE9a5bSnu-UwcaeE',
+    success: function(data){
+      var lati = data['results'][0]['geometry']['location']['lat']; //gets Longitude
+      var lng = data['results'][0]['geometry']['location']['lng']; // gets Latitude
+      var getPoints = function() {
+        //do loop adds the heatmap dot over and over to same place up to the value of the multipler assigned above
+        var count = 0;
+        do {
+          count++;
+          return [
+            new google.maps.LatLng(lati, lng)
+          ]
+        } while (count <= multiplier);
+      } //end of getPoints function
+      heatmap = new google.maps.visualization.HeatmapLayer({
+          data: getPoints(),
+          map: map
+        });
+      $('#map').append(map);
+    }
+  })
+})
+
+
+
+// NUMBER 6 WHAT'S YOUR FAVORITE SPIRIT ANIMAL?
+
+$('#q6').click(function(e) {
+  var result;
+  //switch case to assign a neighborhood and multiper to be added to heatmap depending on which answer is selected. So, look at nyc_data_psuedo_code and pick one neighborhood and corresponding multiplier for each answer (see the questions in questions.html). Let's not do a bunch of neighborhoods for each answer at this time. just one hood per answer.
+  switch($('input[name=q6]:checked').attr('id')){
+    case 'q6a':
+      result = morningsideHeights;
+      multiplier = 10;
+      break;
+    case 'q6b':
+      result = upperEastSide;
+      multiplier = 10;
+      break;
+    case 'q6c':
+      result = upperWestSide;
+      multiplier = 10;
+      break;
+    case 'q6d':
+      result = greenwichVillage;
+      multiplier = 10;
+      break;
+    case 'q6e':
+      result = lowerEastSide;
+      multiplier = 10;
+      break;
+    case 'q6f':
+      result = eastVillage;
+      multiplier = 10;
+      break;
+  }
+  console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
+  }
+
+$.ajax({
+    method: "GET",
+    url:'https://maps.googleapis.com/maps/api/geocode/json?address=' + result + '&key=AIzaSyAI0zafi0IKwLK3q6WxE9a5bSnu-UwcaeE',
+    success: function(data){
+      var lati = data['results'][0]['geometry']['location']['lat']; //gets Longitude
+      var lng = data['results'][0]['geometry']['location']['lng']; // gets Latitude
+      var getPoints = function() {
+        //do loop adds the heatmap dot over and over to same place up to the value of the multipler assigned above
+        var count = 0;
+        do {
+          count++;
+          return [
+            new google.maps.LatLng(lati, lng)
+          ]
+        } while (count <= multiplier);
+      } //end of getPoints function
+      heatmap = new google.maps.visualization.HeatmapLayer({
+          data: getPoints(),
+          map: map
+        });
+      $('#map').append(map);
+    } //end of success function
+  }) //end of ajax call
+//end of click function q6
+
+
+// NUMBER 7 FAVORITE SONG ON JUKEBOX?
+
+$('#q7').click(function(e){
+  var result;
+  switch($('input[name=q7]:checked').attr('id')){
+    case 'q7a':
+      result = eastHarlem
+      multiplier = 10;
+      break;
+    case 'q7b':
+      result = upperEastSide;
+      multiplier = 10;
+      break;
+    case 'q7c':
+      result = upperWestSide;
+      multiplier = 5;
+      break;
+    case 'q7d':
+      result = midtownWest;
+      multiplier = 10;
+      break;
+    case 'q7e':
+      result = murrayHill;
+      multiplier = 10;
+      break;
+    case 'q7f':
+      result = gramercy;
+      multiplier = 10;
+      break;
+    case 'q7g':
+      result = lowerEastSide;
+      multiplier = 10;
+      break;
+    case 'q7h':
+      result = chinatown;
+      multiplier = 10;
+      break;
+    case 'q7i':
+      result = morningsideHeights;
+      multiplier = 10;
+      break;
+    case 'q7j':
+      result = financialDistrict;
+      multiplier = 10;
+      break;
+  }
+  console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
+
+$.ajax({
+    method: "GET",
+    url:'https://maps.googleapis.com/maps/api/geocode/json?address=' + result + '&key=AIzaSyAI0zafi0IKwLK3q6WxE9a5bSnu-UwcaeE',
+    success: function(data){
+      var lati = data['results'][0]['geometry']['location']['lat']; //gets Longitude
+      var lng = data['results'][0]['geometry']['location']['lng']; // gets Latitude
+      var getPoints = function() {
+        //do loop adds the heatmap dot over and over to same place up to the value of the multipler assigned above
+        var count = 0;
+        do {
+          count++;
+          return [
+            new google.maps.LatLng(lati, lng)
+          ]
+        } while (count <= multiplier);
+      } //end of getPoints function
+      heatmap = new google.maps.visualization.HeatmapLayer({
+          data: getPoints(),
+          map: map
+        });
+      $('#map').append(map);
+    } //end of success function
+  }) //end of ajax call
+})//end of click function q7
+
+userBank (array) = key value pairs (neighborhoods)
+all values start at 0
+
+
 
 
