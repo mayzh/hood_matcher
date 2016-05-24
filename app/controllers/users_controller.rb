@@ -1,48 +1,47 @@
-require 'bcrypt'
 class UsersController < ApplicationController
 
+  def new
+  end
+
+  def create
+    user = User.new(user_params)
+    if user.save
+      session[:user_id] = user.id
+      redirect_to '/'
+    else
+      redirect_to '/signup'
+    end
+  end
+
+  # before_filter :authorize
+
   def index
-  @users = User.all
+    cache User do
+      @users = User.all
+    end
+  end
+
+  def destroy
+    @user = User.destroy(params['id'])
+    redirect_to(:back)
   end
 
   def show
     @user = User.find_by(id: params[:id])
   end
 
-  def new
-    @user = User.new
-  end
+  def update
+    @user = User.find_by(id: params[:id])
+    @user.update_attributes(user_params)
 
-  def create
-    @user = User.create(post_params)
-    binding.pry
     redirect_to @user
   end
 
-  def destroy
-    @user = User.find_by(id: params[:id])
-    @user.destroy
-    redirect_to users_path
-  end
-
-  def password
-  @password ||= Password.new(password_hash)
-  end
-
-
-  def login
-    @user = User.find_by(email: params[:email])
-
-    if @user.password = params[:password_digest]
-      give_token
-    else
-      redirect_to home_url
-    end
-  end
 
   private
 
-  def post_params
-    params.require(:user).permit(:email, :password_digest, :username)
+  def user_params
+    params.require(:user).permit(:username, :email, :password, :password_confirmation)
   end
+
 end
