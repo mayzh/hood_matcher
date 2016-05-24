@@ -74,7 +74,7 @@ $('#q1').click(function(e) {
   //ADD IN THE API KEY LOCALLY - NOT IN GITHUB VERSION //
   $.ajax({
     method: "GET",
-    url:'https://maps.googleapis.com/maps/api/geocode/json?address=' + result + '&key=AIzaSyAI0zafi0IKwLK3q6WxE9a5bSnu-UwcaeE',
+    url:'https://maps.googleapis.com/maps/api/geocode/json?address=' + result + '&key=YOUR_API_KEY',
     success: function(data){
       var lati = data['results'][0]['geometry']['location']['lat']; //gets Longitude
       var lng = data['results'][0]['geometry']['location']['lng']; // gets Latitude
