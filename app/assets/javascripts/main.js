@@ -41,17 +41,17 @@ $(document).ready(function() {
     $tab_signup = $form_modal_tab.children('li').eq(1).children('a'),
     $forgot_password_link = $form_login.find('.cd-form-bottom-message a'),
     $back_to_login_link = $form_forgot_password.find('.cd-form-bottom-message a'),
-    $main_nav = $('.main-nav');
+    $modal_trigger = $('.modal-trigger');
 
   //open modal
-  $('.btn-lg').on('click', function(event){
+  $modal_trigger.on('click', function(event){
 
-    if( $(event.target).is($main_nav) ) {
+    if( $(event.target).is($modal_trigger) ) {
       // on mobile open the submenu
       $(this).children('ul').toggleClass('is-visible');
     } else {
       // on mobile close submenu
-      $main_nav.children('ul').removeClass('is-visible');
+      $modal_trigger.children('ul').removeClass('is-visible');
       //show modal layer
       $form_modal.addClass('is-visible');
       //show the selected form
@@ -66,28 +66,12 @@ $(document).ready(function() {
       $form_modal.removeClass('is-visible');
     }
   });
-  //close modal when clicking the esc keyboard button
-  $(document).keyup(function(event){
-      if(event.which=='27'){
-        $form_modal.removeClass('is-visible');
-      }
-    });
+
 
   //switch from a tab to another
   $form_modal_tab.on('click', function(event) {
     event.preventDefault();
     ( $(event.target).is( $tab_login ) ) ? login_selected() : signup_selected();
-  });
-
-  //hide or show password
-  $('.hide-password').on('click', function(){
-    var $this= $(this),
-      $password_field = $this.prev('input');
-
-    ( 'password' == $password_field.attr('type') ) ? $password_field.attr('type', 'text') : $password_field.attr('type', 'password');
-    ( 'Hide' == $this.text() ) ? $this.text('Show') : $this.text('Hide');
-    //focus and move cursor to the end of input field
-    $password_field.putCursorAtEnd();
   });
 
   //show forgot-password form
@@ -122,7 +106,46 @@ $(document).ready(function() {
     $form_login.removeClass('is-selected');
     $form_signup.removeClass('is-selected');
     $form_forgot_password.addClass('is-selected');
-  };
+  }
+
+  //show error messages
+  $form_login.find('input[type="submit"]').on('click', function(event){
+    event.preventDefault();
+    $form_login.find('input[type="email"]').toggleClass('has-error').next('span').toggleClass('is-visible');
+  });
+  $form_signup.find('input[type="submit"]').on('click', function(event){
+    event.preventDefault();
+    $form_signup.find('input[type="email"]').toggleClass('has-error').next('span').toggleClass('is-visible');
+  });
+
+   //------------- for quizContainer stuffs
+
+  var curQuestion = 1;
+  var questionCount = 3
+
+  $('#next_button').on('click',function(e){
+    curQuestion = curQuestion > questionCount-1 ? 1 : curQuestion+1;
+
+    //cover questions
+    $('#question_cover').fadeIn("slow", function(){
+      //unlock y-scroll
+      $('#quiz_container').css({
+        overflow: 'visible'
+      });
+      $('#quiz_container').animate({
+        scrollTop: $("#q"+curQuestion).offset().top-260
+      }, 1);
+      //lock y-scroll
+      $('#quiz_container').css({
+        overflow: 'hidden'
+      });
+      //uncover questions
+      $('#question_cover').fadeOut("slow");
+    });
+  });
+
+  });
+
 
 
 
