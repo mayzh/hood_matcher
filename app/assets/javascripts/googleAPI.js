@@ -1,4 +1,5 @@
 // Google Maps Scripts
+console.log(gon_user);
 var map;
 var heatmap;
 
@@ -51,7 +52,7 @@ var heatmapAJAX = function() {
     result = hoodName;
     // console.log('result is ' + result)
     // console.log('hoodname is ' + hoodName);
-    multiplier = results[hoodName];
+    multiplier = (results[hoodName] / 5);
     // console.log('multiplier is ' + multiplier);
     $.ajax({
     method: "GET",
@@ -608,7 +609,9 @@ $("input[name='q10']").click(function(e) {
   //go thru userResults to find the neighborhood with highest number of heat dots:
   var hoodWithMostDots = Object.keys(userResults).reduce(function(a, b){ return userResults[a] > userResults[b] ? a : b });
 // var hoodWithMostDots = userResults.slice(0).sort(function(x, y) { return y.number - x.number })[0];
-  console.log('the hottest hood for you is ' + hoodWithMostDots);
+
+
+  window.alert('the hottest hood for you is ' + hoodWithMostDots);
   // index = userResults.indexOf(hoodWithMostDots);
   // console.log('the index of your hood is ' + index);
 })//end of click function q10************************

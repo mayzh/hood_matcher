@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get '/signup' => 'users#new'
   get '/quiz' => 'users#quiz'
+  get '/result' => 'users#show'
   resources :users
 
 end
