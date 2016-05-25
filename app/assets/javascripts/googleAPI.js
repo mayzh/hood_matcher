@@ -105,7 +105,7 @@ $.ajax({
 $("input[name*='q1']").click(function(e) {
   // e.preventDefault; // dont think we need this
   var result;
-  //switch case to assign a neighborhood and multiper to be added to heatmap depending on which answer is selected. So, look at nyc_data_psuedo_code and pick one neighborhood and corresponding multiplier for each answer (see the questions in questions.html). Let's not do a bunch of neighborhoods for each answer at this time. just one hood per answer.
+  //switch case to assign a neighborhood and multiper to be added to heatmap depending on which answer is selected.
   switch($('input[name=q1]:checked').attr('id')){
     case 'q1a':
       result = 'upperEastSide';
@@ -212,7 +212,7 @@ $("input[name*='q5']").click(function(e){
       multiplier = 10;
       break;
   }
-  console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
+  // console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
   heatmapAJAX(result, multiplier);
 })//end of click function q5 **************************
 
@@ -245,7 +245,7 @@ $("input[name*='q6']").click(function(e) {
       multiplier = 10;
       break;
   }
-  console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
+  // console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
   heatmapAJAX(result, multiplier);
 })//end of click function q6 **************************
 
@@ -294,7 +294,7 @@ $("input[name*='q7']").click(function(e){
       multiplier = 10;
       break;
   }
-  console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
+  // console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
   heatmapAJAX(result, multiplier);
 })//end of click function q7 **************************
 
@@ -373,7 +373,7 @@ $("input[name*='q9']").click(function(e) {
       break;
 
   }
-  console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
+  // console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
   heatmapAJAX(result, multiplier);
 })//end of click function q9************************
 
@@ -400,12 +400,12 @@ $("input[name='q10']").click(function(e) {
   // console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
 
   heatmapAJAX(result, multiplier);
-  console.log(userResult);
   //go thru userResult to find the neighborhood with highest number of heat dots:
-  // http://stackoverflow.com/questions/11142884/fast-way-to-get-the-min-max-values-among-properties-of-object
-  var arr = Object.keys( userResult ).map(function ( key ) { return userResult[key]; });
-  var max = Math.max.apply( null, arr );
-  console.log(max);
+  var hoodWithMostDots = Object.keys(userResult).reduce(function(a, b){ return userResult[a] > userResult[b] ? a : b });
+// var hoodWithMostDots = userResult.slice(0).sort(function(x, y) { return y.number - x.number })[0];
+  console.log('the hottest hood for you is ' + hoodWithMostDots);
+  // index = userResult.indexOf(hoodWithMostDots);
+  // console.log('the index of your hood is ' + index);
 })//end of click function q10************************
 
 
