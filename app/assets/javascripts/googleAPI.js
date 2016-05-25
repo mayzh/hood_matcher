@@ -56,7 +56,7 @@ var heatmapAJAX = function() {
     // console.log('multiplier is ' + multiplier);
     $.ajax({
     method: "GET",
-    url:'https://maps.googleapis.com/maps/api/geocode/json?address=' + result + '&key=AIzaSyB6wb28215IffsxuOhc6WR0x913OYQU2I8',
+    url:'https://maps.googleapis.com/maps/api/geocode/json?address=' + result + '&key=YOUR_API_KEY',
     success: function(data){
       //gets Longitude
       var lati = data['results'][0]['geometry']['location']['lat'];
@@ -95,7 +95,7 @@ var heatmapAJAX = function() {
 $.ajax({
   method: "GET",
   dataType: 'script',
-  url: "https://maps.googleapis.com/maps/api/js?key=AIzaSyB6wb28215IffsxuOhc6WR0x913OYQU2I8&libraries=visualization",
+  url: "https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization",
   success: function(data){
     // console.log('ajax progress');
     map = new google.maps.Map(document.getElementById('map'), {
