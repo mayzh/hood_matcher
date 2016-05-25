@@ -9,6 +9,4 @@ Rails.application.routes.draw do
   get '/quiz' => 'users#quiz'
   resources :users
 
-  get '/quiz'
-
 end

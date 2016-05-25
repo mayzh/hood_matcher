@@ -21,7 +21,8 @@ var eastHarlem = '164 E 116th St, New York, NY 10029';
 var harlem = '2361 Adam Clayton Powell Jr Blvd, New York, NY 10030';
 var morningSideHts = '420 W 118th St, New York, NY 10027';
 
-var userResult = {
+var results = {};
+var userResults = {
   inwood: 0,
   financialDist: 0,
   tribeca: 0,
@@ -42,16 +43,26 @@ var userResult = {
   morningSideHts: 0
 }
 
+
 //function to add heatmap results based on answers to questions
-var heatmapAJAX = function(result, multiplier) {
-  $.ajax({
+var heatmapAJAX = function() {
+  //iterates through results object to add dots for multiple hoods per response
+  for ( var hoodName in results ) {
+    result = hoodName;
+    // console.log('result is ' + result)
+    // console.log('hoodname is ' + hoodName);
+    multiplier = results[hoodName];
+    // console.log('multiplier is ' + multiplier);
+    $.ajax({
     method: "GET",
     url:'https://maps.googleapis.com/maps/api/geocode/json?address=' + result + '&key=AIzaSyB6wb28215IffsxuOhc6WR0x913OYQU2I8',
     success: function(data){
-      var lati = data['results'][0]['geometry']['location']['lat']; //gets Longitude
-      var lng = data['results'][0]['geometry']['location']['lng']; // gets Latitude
+      //gets Longitude
+      var lati = data['results'][0]['geometry']['location']['lat'];
+      // gets Latitude
+      var lng = data['results'][0]['geometry']['location']['lng'];
       var getPoints = function() {
-        //do loop adds the heatmap dot over and over to same place up to the value of the multipler assigned above
+        //do loop adds the heatmap dot over and over to same place up to the value of the multipler assigned by response
         var count = 0;
         do {
           count++;
@@ -67,19 +78,23 @@ var heatmapAJAX = function(result, multiplier) {
       $('#map').append(map);
     } //end of success function
   }) //end of ajax call
-  //add result to the userResult object bank
-  for ( var hood in userResult ) {
+  //add result to the userResults object bank
+  for ( var hood in userResults ) {
     if ( hood == result ) {
       // console.log(hood);
-      var points = userResult[hood];
+      var points = userResults[hood];
       points = points + multiplier;
-      userResult[hood] = points;
+      userResults[hood] = points;
       // console.log(points);
       console.log(hood + ' now has ' + points + ' points.')
       break;
     }
   }
+  } // end of hoodname for loop
 } //end of heatmapAJAX
+
+
+
 
 //function to add initial map to the page
 $.ajax({
@@ -87,7 +102,7 @@ $.ajax({
   dataType: 'script',
   url: "https://maps.googleapis.com/maps/api/js?key=AIzaSyB6wb28215IffsxuOhc6WR0x913OYQU2I8&libraries=visualization",
   success: function(data){
-    console.log('ajax progress');
+    // console.log('ajax progress');
     map = new google.maps.Map(document.getElementById('map'), {
       zoom: 12,
       center: {lat: 40.756929, lng: -73.978885}, //New York
@@ -104,35 +119,115 @@ $.ajax({
 //**********QUESTION 1***********
 $("input[name*='q1']").click(function(e) {
   // e.preventDefault; // dont think we need this
-  var result;
+
   //switch case to assign a neighborhood and multiper to be added to heatmap depending on which answer is selected.
   switch($('input[name=q1]:checked').attr('id')){
     case 'q1a':
-      result = 'upperEastSide';
-      multiplier = 10;
+      results.upperEastSide = 5;
+      results.upperWestSide = 4.5;
+      results.soho = 2.5;
+      results.eastVillage = 2.5;
+      results.midtownWest = 2;
+      results.chelsea = 2;
+      results.inwood = 1.5;
+      results.murrayHill = 1.5;
+      results.gramercy = 1.5;
+      results.morningSideHts = 1;
+      results.midtownEast = 1;
+      results.lowerEast = 0.5;
+      results.harlem = 0.5;
       break;
     case 'q1b':
-      result = 'harlem';
-      multiplier = 5;
+      results.upperEastSide = 5;
+      results.upperWestSide = 4;
+      results.harlem = 2.5;
+      results.eastVillage = 2.5;
+      results.soho = 2;
+      results.chelsea = 2;
+      results.midtownWest = 2;
+      results.midtownEast = 2;
+      results.murrayHill = 1.5;
+      results.financialDist = 1.5;
+      results.lowerEast = 1.5;
+      results.inwood = 1.5;
+      results.tribeca = 1;
+      results.gramercy = 1;
+      results.eastHarlem = 1;
+      results.chinaTown = 0.5;
       break;
     case 'q1c':
-      result = 'upperWestSide';
-      multiplier = 10;
+      results.upperWestSide = 5;
+      results.upperEastSide = 4.5;
+      results.chelsea = 3;
+      results.soho = 2.5;
+      results.midtownWest = 2.5;
+      results.midtownEast = 2;
+      results.inwood = 2;
+      results.eastVillage = 2;
+      results.murrayHill = 1.5;
+      results.financialDist = 1.5;
+      results.gramercy = 1;
+      results.harlem = 1;
+      results.tribeca = 1;
+      results.morningSideHts = 0.5;
+      results.chinaTown = 0.5;
+      results.lowerEast = 0.5;
       break;
     case 'q1d':
-      result = 'chelsea';
-      multiplier = 4;
+      results.upperWestSide = 5;
+      results.upperEastSide = 5;
+      results.chelsea = 2;
+      results.midtownWest = 2;
+      results.eastVillage = 2;
+      results.financialDist = 2;
+      results.soho = 2;
+      results.murrayHill = 1.5;
+      results.tribeca = 1.5;
+      results.harlem = 3;
+      results.midtownEast = 1.5;
+      results.gramercy = 1.5;
+      results.lowerEast = 1.5;
+      results.inwood = 1.5;
+      results.morningSideHts = 1;
+      results.eastHarlem = 0.5;
       break;
     case 'q1e':
-      result = 'eastVillage';
-      multiplier = 4;
+      results.upperEastSide = 5;
+      results.upperWestSide = 4;
+      results.eastVillage = 2;
+      results.harlem = 2;
+      results.chelsea = 1.5;
+      results.inwood = 1.5;
+      results.midtownEast = 1;
+      results.financialDist = 1;
+      results.midtownWest = 1;
+      results.soho = 1;
+      results.tribeca = 1;
+      results.chinaTown = 0.5;
+      results.eastHarlem = 0.5;
+      results.lowerEast = 0.5;
+      results.morningSideHts = 0.5;
       break;
     case 'q1f':
-      result = 'upperEastSide';
-      multiplier = 7;
+      results.upperEastSide = 3.5;
+      results.upperWestSide = 3.5;
+      results.eastVillage = 2;
+      results.chelsea = 2;
+      results.soho = 1.5;
+      results.midtownWest = 1;
+      results.midtownEast = 1;
+      results.harlem = 1;
+      results.chinaTown = 1;
+      results.financialDist = 1;
+      results.gramercy = 1;
+      results.inwood = 0.5;
+      results.murrayHill = 0.5;
+      results.eastHarlem = 0.5;
+      results.tribeca = 0.5;
+      results.morningSideHts = 0.5;
       break;
   }
-  heatmapAJAX(result, multiplier);
+  heatmapAJAX();
 })//end of click function q1 **************************
 
 //**********QUESTION 2***********
@@ -141,12 +236,40 @@ $("input[name*='q2']").click(function(e) {
   var result;
   switch($('input[name=q2]:checked').attr('id')){
     case 'q2a':
-      result = 'harlem';
-      multiplier = 10;
+      results.harlem = 5;
+      results.upperEastSide = 5;
+      results.upperWestSide = 3.5;
+      results.financialDist = 3.5;
+      results.eastVillage = 3.5;
+      results.morningSideHts = 3.5;
+      results.inwood = 3.5;
+      results.midtownWest = 3.5;
+      results.greenwich = 2.5;
+      results.eastHarlem = 2.5;
+      results.gramercy = 1;
+      results.chelsea = 1;
+      results.murrayHill = 1;
+      results.lowerEast = 1;
+      results.tribeca = 1;
+      results.upperEastSide = 1;
       break;
     case 'q2b':
-      result = 'chinaTown';
-      multiplier = 10;
+      results.chinaTown = 5;
+      results.soho = 5;
+      results.midtownEast = 4;
+      results.tribeca = 4;
+      results.lowerEast = 4;
+      results.murrayHill = 4;
+      results.chelsea = 4;
+      results.gramercy = 4;
+      results.eastHarlem = 2.5;
+      results.greenwich = 2.5;
+      results.midtownWest = 1.5;
+      results.inwood = 1.5;
+      results.morningSideHts = 1.5;
+      results.eastVillage = 1.5;
+      results.financialDist = 1.5;
+      results.upperWestSide = 1.5;
       break;
   }
   // console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
@@ -159,12 +282,39 @@ $("input[name*='q3']").click(function(e) {
   var result;
   switch($('input[name=q3]:checked').attr('id')){
     case 'q3a':
-      result = 'upperWestSide';
-      multiplier = 10;
+      results.upperWestSide = 5;
+      results.harlem = 5;
+      results.upperEastSide = 4;
+      results.inwood = 3.5;
+      results.eastHarlem = 3.5;
+      results.eastVillage = 2.5;
+      results.greenwich = 2.5;
+      results.lowerEast = 2.5;
+      results.midtownWest = 2;
+      results.financialDist = 1.5;
+      results.gramercy = 1.5;
+      results.midtownEast = 1;
+      results.chelsea = 1;
+      results.chinaTown = 1;
+      results.murrayHill = 0.5;
+      results.soho = 0.5;
       break;
     case 'q3b':
-      result = 'tribeca';
-      multiplier = 10;
+      results.tribeca = 5;
+      results.morningSideHts = 5;
+      results.soho = 4.5;
+      results.murrayHill = 4.5;
+      results.chinaTown = 4;
+      results.midtownEast = 4;
+      results.gramercy = 3.5;
+      results.financialDist = 3.5;
+      results.midtownWest = 3;
+      results.lowerEast = 2.5;
+      results.greenwich = 2.5;
+      results.eastVillage = 2.5;
+      results.eastHarlem = 1.5;
+      results.inwood = 1.5;
+      results.upperEastSide = 1;
       break;
   }
   // console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
@@ -177,12 +327,44 @@ $("input[name*='q4']").click(function(e) {
   var result;
   switch($('input[name=q4]:checked').attr('id')){
     case 'q4a':
-      result = 'upperWestSide';
-      multiplier = 10;
+      results.midtownWest = 5;
+      results.midtownEast = 5;
+      results.soho = 4.5;
+      results.murrayHill = 4.5;
+      results.eastVillage = 4.5;
+      results.greenwich = 4;
+      results.chelsea = 3.5;
+      results.gramercy = 3;
+      results.tribeca = 3;
+      results.lowerEast = 3;
+      results.chinaTown = 2.5;
+      results.upperEastSide =2.5;
+      results.harlem = 2;
+      results.financialDist = 2;
+      results.upperWestSide = 2;
+      results.inwood = 1.5;
+      results.morningSideHts = 1;
+      results.eastHarlem = 1;
       break;
     case 'q4b':
-      result = 'tribeca';
-      multiplier = 10;
+      results.eastHarlem = 5;
+      results.morningSideHts = 5;
+      results.inwood = 4;
+      results.upperWestSide = 3.5;
+      results.financialDist = 3.5;
+      results.harlem = 3.5;
+      results.upperEastSide = 3;
+      results.chinaTown = 3;
+      results.lowerEast = 2.5;
+      results.tribeca = 2.5;
+      results.gramercy = 2.5;
+      results.chelsea = 2;
+      results.greenwich = 1.5;
+      results.eastVillage = 1;
+      results.murrayHill = 1;
+      results.soho = 1;
+      results.midtownWest = 0.5;
+      results.midtownEast = 0.5;
       break;
   }
   // console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
@@ -400,11 +582,11 @@ $("input[name='q10']").click(function(e) {
   // console.log('the result is ' + result + ' with a multiplier of ' + multiplier);
 
   heatmapAJAX(result, multiplier);
-  //go thru userResult to find the neighborhood with highest number of heat dots:
-  var hoodWithMostDots = Object.keys(userResult).reduce(function(a, b){ return userResult[a] > userResult[b] ? a : b });
-// var hoodWithMostDots = userResult.slice(0).sort(function(x, y) { return y.number - x.number })[0];
+  //go thru userResults to find the neighborhood with highest number of heat dots:
+  var hoodWithMostDots = Object.keys(userResults).reduce(function(a, b){ return userResults[a] > userResults[b] ? a : b });
+// var hoodWithMostDots = userResults.slice(0).sort(function(x, y) { return y.number - x.number })[0];
   console.log('the hottest hood for you is ' + hoodWithMostDots);
-  // index = userResult.indexOf(hoodWithMostDots);
+  // index = userResults.indexOf(hoodWithMostDots);
   // console.log('the index of your hood is ' + index);
 })//end of click function q10************************
 
