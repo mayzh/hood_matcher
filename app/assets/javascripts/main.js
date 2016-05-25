@@ -109,19 +109,17 @@ $(document).ready(function() {
   }
 
   //show error messages
+  /*
   $form_login.find('input[type="submit"]').on('click', function(event){
     event.preventDefault();
     $form_login.find('input[type="email"]').toggleClass('has-error').next('span').toggleClass('is-visible');
   });
-  $form_signup.find('input[type="submit"]').on('click', function(event){
-    event.preventDefault();
-    $form_signup.find('input[type="email"]').toggleClass('has-error').next('span').toggleClass('is-visible');
-  });
+*/
 
    //------------- for quizContainer stuffs
 
   var curQuestion = 1;
-  var questionCount = 3
+  var questionCount = 10
 
   $('#next_button').on('click',function(e){
     curQuestion = curQuestion > questionCount-1 ? 1 : curQuestion+1;
@@ -132,9 +130,11 @@ $(document).ready(function() {
       $('#quiz_container').css({
         overflow: 'visible'
       });
+
       $('#quiz_container').animate({
         scrollTop: $("#q"+curQuestion).offset().top-260
       }, 1);
+
       //lock y-scroll
       $('#quiz_container').css({
         overflow: 'hidden'
