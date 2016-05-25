@@ -1,54 +1,5 @@
-<%
-=begin %>   <% @users.each do |user| %>
-<h5><%= link_to user.username, user %></h5>
-<% end %>
-  <h3><%= link_to 'Sign Up Now!', new_user_path %></h3>
-<h3> OR </h3>
-<h3><%= link_to 'Login', new_user_path %></h3>
 
-<hr>
-
-<% if current_user %>
-  Signed in as <%= current_user.username %> | <%= link_to "Logout", '/logout' %>
-<% else %>
-  <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
-<% end %>
-<%
-=end %>
-
- <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-                    <i class="fa fa-bars"></i>
-                </button>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-                <ul class="nav navbar-nav">
-                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#">Sign Up</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#">Login</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#">Friends</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-
-    <!-- Intro Header -->
-    <header class="intro">
+    <div class="intro">
         <div class="intro-body">
             <div class="container">
                 <div class="row">
@@ -56,9 +7,105 @@
                         <h1 class="intro-heading">Hood Matcher</h1>
                         <p class="intro-text">Find your dream NYC neighborhood</p>
                         <br>
-                         <a href="#" class="btn btn-default btn-lg">BEGIN QUIZ</a>
-                    </div>
-                </div>
+                            <div class="modal-trigger">
+                                <ul>
+                                <li><a href="#0" class="btn btn-default btn-lg">BEGIN</a></li>
+                                </ul>
+                            </div>
+                     </div>
+                 </div>
             </div>
         </div>
-    </header>
+
+        <div class="cd-user-modal">
+            <!-- entire form, incl background-->
+            <div class="cd-user-modal-container">
+              <!-- container wrapper -->
+              <ul class="cd-switcher">
+                <li><a href="#0">Log In</a></li>
+                <li><a href="#0">Sign Up</a></li>
+              </ul>
+
+              <div id="cd-login">
+                <!-- log in form -->
+                <form class="cd-form">
+                  <p class="fieldset">
+                    <label class="image-replace cd-email" for="signin-email">E-mail</label>
+                    <input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
+                    <span class="cd-error-message">Please enter a valid email!</span>
+                  </p>
+
+                  <p class="fieldset">
+                    <label class="image-replace cd-password" for="signin-password">Password</label>
+                    <input class="full-width has-padding has-border" id="signin-password" type="password" placeholder="Password">
+                  </p>
+
+                  <p class="fieldset">
+                    <input type="checkbox" id="remember-me" checked>
+                    <label for="remember-me">Remember me</label>
+                  </p>
+
+                  <p class="fieldset">
+                    <input class="full-width" type="submit" value="Login">
+                  </p>
+                </form>
+
+                <p class="cd-form-bottom-message"><a href="#0">Forgot your password?</a></p>
+              </div>
+
+
+              <div id="cd-signup">
+                <!-- sign up form -->
+                <form class="cd-form">
+                  <p class="fieldset">
+                    <label class="image-replace cd-username" for="signup-username">Name</label>
+                    <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Name">
+                    <span class="cd-error-message">Error message here!</span>
+                  </p>
+
+                  <p class="fieldset">
+                    <label class="image-replace cd-email" for="signup-email">E-mail</label>
+                    <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
+                    <span class="cd-error-message">Error message here!</span>
+                  </p>
+
+                  <p class="fieldset">
+                    <label class="image-replace cd-password" for="signup-password">Password</label>
+                    <input class="full-width has-padding has-border" id="signup-password" type="password" placeholder="Password">
+                    <span class="cd-error-message">Error message here!</span>
+                  </p>
+
+
+                  <p class="fieldset">
+                    <input class="full-width has-padding" type="submit" value="Create account">
+                  </p>
+                </form>
+
+              </div>
+
+              <div id="cd-reset-password">
+                <!-- reset password form -->
+                <p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
+
+                <form class="cd-form">
+                  <p class="fieldset">
+                    <label class="image-replace cd-email" for="reset-email">E-mail</label>
+                    <input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
+                    <span class="cd-error-message">Error message here!</span>
+                  </p>
+
+                  <p class="fieldset">
+                    <input class="full-width has-padding" type="submit" value="Reset password">
+                  </p>
+                </form>
+
+                <p class="cd-form-bottom-message"><a href="#0">Back to log-in</a></p>
+              </div>
+              <!-- cd-reset-password -->
+              <a href="#0" class="cd-close-form">Close</a>
+            </div>
+            <!-- cd-user-modal-container -->
+          </div>
+
+
+    </div>

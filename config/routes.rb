@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
 
   get '/signup' => 'users#new'
+  get '/quiz' => 'users#quiz'
   resources :users
 
 end
