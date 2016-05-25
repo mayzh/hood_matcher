@@ -536,7 +536,7 @@ xsigin/signup popup
 
 #map {
     width: 100%;
-    height: 200px;
+    height: 400px;
     margin-top: 100px;
 }
 
@@ -666,17 +666,13 @@ body {
 */
 
 #map_side{
-    margin-top:94px;
+    margin-top:0px;
     position: fixed;
     left: 50%;
+    height: 500px;
+    margin-right: 0px;
 }
 
-#map_side #map2 {
-    background-color: rgb(66, 220, 163);
-    height: 100vh;
-    min-width: 100%;
-    position: relative;
-}
 
 /*
     Questions Partial CSS
@@ -724,96 +720,6 @@ body {
     display:none;
 }
 
-// variables - colors
 
-$main-text: #505260; // main text
-$background: #fff; // body background color
-
-$color-1: #343642; // blue-dark
-$color-2: #2f889a; // blue-light
-$color-3: #d2d8d8; // grey
-
-$red: #d76666; // error messages
-
-// variables - fonts
-
-$primary-font: 'PT Sans', sans-serif;
-
-// variables - z-index
-
-$header-zindex: 2;
-$modal-zindex: 3;
-
-// variables - header
-
-$header-height-S: 50px;
-$header-height-M: 80px;
-
-// mixins - rem fallback - credits: http://zerosixthree.se/
-
-@function calculateRem($size) {
-  $remSize: $size / 16px;
-  @return $remSize * 1rem;
-}
-
-@mixin font-size($size) {
-  font-size: $size;
-  font-size: calculateRem($size);
-}
-
-// mixins - center vertically and/or horizontally an absolute positioned element
-
-@mixin center($xy:xy) {
-  @if $xy == xy {
-    left: 50%;
-    top: 50%;
-    bottom: auto;
-    right: auto;
-    @include transform(translateX(-50%) translateY(-50%));
-  }
-  @else if $xy == x {
-    left: 50%;
-    right: auto;
-    @include transform(translateX(-50%));
-  }
-  @else if $xy == y {
-    top: 50%;
-    bottom: auto;
-    @include transform(translateY(-50%));
-  }
-}
-
-// mixins - border radius
-
-@mixin border-radius($radius:.25em) {
-  border-radius: $radius;
-}
-
-// layout - breakpoints
-
-$S:     600px;
-$M:     768px;
-$L:     1170px;
-
-// layout - media queries
-
-@mixin MQ($canvas) {
-  @if $canvas == S {
-   @media only screen and (min-width: $S) { @content; }
-  }
-  @else if $canvas == M {
-   @media only screen and (min-width: $M) { @content; }
-  }
-  @else if $canvas == L {
-   @media only screen and (min-width: $L) { @content; }
-  }
-}
-
-// layout - super light grid - it works with the .cd-container class
-
-@mixin column($percentage, $float-direction:left) {
-  width: 100% * $percentage;
-  float: $float-direction;
-}
 
 
